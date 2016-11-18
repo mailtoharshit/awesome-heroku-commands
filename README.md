@@ -1,2 +1,86 @@
-# awesome-heroku-commands
+# Awesome-Heroku-commands
 Cheat-Sheet for Heroku commands and more 
+
+=== General Commands
+
+help                         # show this usage
+version                      # show the gem version
+
+list                         # list your apps
+create [<name>]              # create a new app
+
+keys                         # show your user's public keys
+keys:add [<path to keyfile>] # add a public key
+keys:remove <keyname>        # remove a key by name (user@host)
+keys:clear                   # remove all keys
+
+info                         # show app info, like web url and git repo
+open                         # open the app in a web browser
+rename <newname>             # rename the app
+
+dynos <qty>                  # scale to qty web processes
+workers <qty>                # scale to qty background processes
+
+sharing:add <email>          # add a collaborator
+sharing:remove <email>       # remove a collaborator
+sharing:transfer <email>     # transfers the app ownership
+
+domains:add <domain>         # add a custom domain name
+domains:remove <domain>      # remove a custom domain name
+domains:clear                # remove all custom domains
+
+ssl:add <pem> <key>          # add SSL cert to the app
+ssl:remove <domain>          # removes SSL cert from the app domain
+
+rake <command>               # remotely execute a rake command
+console <command>            # remotely execute a single console command
+console                      # start an interactive console to the remote app
+
+restart                      # restart app servers
+logs                         # fetch recent log output for debugging
+logs:cron                    # fetch cron log output
+
+maintenance:on               # put the app into maintenance mode
+maintenance:off              # take the app out of maintenance mode
+
+config                       # display the app's config vars (environment)
+config:add key=val [...]     # add one or more config vars
+config:remove key [...]      # remove one or more config vars
+config:clear                 # clear user-set vars and reset to default
+
+stack                        # show current stack and list of available stacks
+stack:migrate                # prepare migration of this app to a new stack
+
+db:pull [<database_url>]     # pull the app's database into a local database
+db:push [<database_url>]     # push a local database into the app's remote database
+db:reset                     # reset the database for the app
+
+bundles                      # list bundles for the app
+bundles:capture [<bundle>]   # capture a bundle of the app's code and data
+bundles:download             # download most recent app bundle as a tarball
+bundles:download <bundle>    # download the named bundle
+bundles:destroy <bundle>     # destroy the named bundle
+
+addons                       # list installed addons
+addons:info                  # list all available addons
+addons:add name [key=value]  # install addon (with zero or more config vars)
+addons:remove name           # uninstall an addons
+addons:clear                 # uninstall all addons
+
+destroy                      # destroy the app permanently
+
+=== Plugins
+
+plugins                      # list installed plugins
+plugins:install <url>        # install the plugin from the specified git url
+plugins:uninstall <url/name> # remove the specified plugin
+
+=== Example:
+
+ cd myapp
+ git init
+ git add .
+ git commit -m "my new app"
+ heroku create myapp
+ git push heroku master
+ heroku open 
