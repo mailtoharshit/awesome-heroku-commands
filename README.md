@@ -3,7 +3,18 @@
 -- A curated list of delightful Heroku Commands
 
 
-<img src="images/heroku.png" align="center" width="1200">
+<img src="images/heroku.png" align="center" width="1100">
+
+
+  Read Related Awesome Pages :
+  * [Awesome Heroku](https://github.com/mailtoharshit/awesome-heroku)
+   * [Awesome Lighting](https://github.com/mailtoharshit/awesome-lighting)
+   * [Awesome Articles](https://github.com/mailtoharshit/awesome-salesforce-articles)
+   * [Awesome Browser Extensions](https://github.com/mailtoharshit/awesome-browser-extensions-for-salesforce/blob/master/README.md)
+   * [Awesome Salesforce](https://github.com/mailtoharshit/awesome-salesforce)
+
+
+
 
 # Heroku Command Line
 The heroku command-line interface (CLI) is a tool that wraps the Heroku Platform API, providing support for things like creating/renaming apps, running one-off dynos, taking backups, configuring add-ons and managing your app’s state-all from the terminal. Install it by following the instructions in Heroku Command Line.
