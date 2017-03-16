@@ -1,86 +1,185 @@
-# Awesome-Heroku-commands
-Cheat-Sheet for Heroku commands and more 
 
-=== General Commands
+# Awesome Heroku Commands
+-- A curated list of delightful Heroku Commands
 
-help                         # show this usage
-version                      # show the gem version
 
-list                         # list your apps
-create [<name>]              # create a new app
+<img src="images/heroku.png" align="center" width="1200">
 
-keys                         # show your user's public keys
-keys:add [<path to keyfile>] # add a public key
-keys:remove <keyname>        # remove a key by name (user@host)
-keys:clear                   # remove all keys
+# Heroku Command Line
+The heroku command-line interface (CLI) is a tool that wraps the Heroku Platform API, providing support for things like creating/renaming apps, running one-off dynos, taking backups, configuring add-ons and managing your app’s state-all from the terminal. Install it by following the instructions in Heroku Command Line.
 
-info                         # show app info, like web url and git repo
-open                         # open the app in a web browser
-rename <newname>             # rename the app
+The heroku command-line interface (CLI) is a tool that wraps the Heroku Platform API, providing support for things like creating/renaming apps, running one-off dynos, taking backups, configuring add-ons and managing your app’s state-all from the terminal. Install it by following the instructions in Heroku Command Line.
 
-dynos <qty>                  # scale to qty web processes
-workers <qty>                # scale to qty background processes
+## Download and install
 
-sharing:add <email>          # add a collaborator
-sharing:remove <email>       # remove a collaborator
-sharing:transfer <email>     # transfers the app ownership
+#### OS X Homebrew
 
-domains:add <domain>         # add a custom domain name
-domains:remove <domain>      # remove a custom domain name
-domains:clear                # remove all custom domains
+To install the Heroku CLI with [homebrew](http://brew.sh/):
 
-ssl:add <pem> <key>          # add SSL cert to the app
-ssl:remove <domain>          # removes SSL cert from the app domain
+```
+$ brew install heroku
+```
 
-rake <command>               # remotely execute a rake command
-console <command>            # remotely execute a single console command
-console                      # start an interactive console to the remote app
+#### OS X Installer
 
-restart                      # restart app servers
-logs                         # fetch recent log output for debugging
-logs:cron                    # fetch cron log output
+Download and run the [OS X Installer](https://cli-assets.heroku.com/branches/stable/heroku-osx.pkg).
 
-maintenance:on               # put the app into maintenance mode
-maintenance:off              # take the app out of maintenance mode
 
-config                       # display the app's config vars (environment)
-config:add key=val [...]     # add one or more config vars
-config:remove key [...]      # remove one or more config vars
-config:clear                 # clear user-set vars and reset to default
+#### Windows
 
-stack                        # show current stack and list of available stacks
-stack:migrate                # prepare migration of this app to a new stack
+Download and run the Windows installer [32-bit](https://cli-assets.heroku.com/branches/stable/heroku-windows-386.exe) [64-bit](https://cli-assets.heroku.com/branches/stable/heroku-windows-amd64.exe)
 
-db:pull [<database_url>]     # pull the app's database into a local database
-db:push [<database_url>]     # push a local database into the app's remote database
-db:reset                     # reset the database for the app
+#### Verify your installation
+To verify your CLI installation use the heroku --version command.
 
-bundles                      # list bundles for the app
-bundles:capture [<bundle>]   # capture a bundle of the app's code and data
-bundles:download             # download most recent app bundle as a tarball
-bundles:download <bundle>    # download the named bundle
-bundles:destroy <bundle>     # destroy the named bundle
+```
+$ heroku --version
+```
 
-addons                       # list installed addons
-addons:info                  # list all available addons
-addons:add name [key=value]  # install addon (with zero or more config vars)
-addons:remove name           # uninstall an addons
-addons:clear                 # uninstall all addons
+You should see heroku-cli/x.y.z in the output. If you don’t, but have installed the Heroku CLI, it’s possible you have an old heroku gem on your system.
 
-destroy                      # destroy the app permanently
+## Getting started
 
-=== Plugins
+You will be asked to enter your Heroku credentials the first time you run a command; after the first time, your email address and an API token will be saved to ~/.netrc for future use. Here at Intuitive Surgical, you will need to login via single sign on.
+        heroku login --sso
 
-plugins                      # list installed plugins
-plugins:install <url>        # install the plugin from the specified git url
-plugins:uninstall <url/name> # remove the specified plugin
+#### List all Heroku apps
+```
+$ heroku apps
+```
 
-=== Example:
+#### Create apps with a specific name
 
- cd myapp
- git init
- git add .
- git commit -m "my new app"
- heroku create myapp
- git push heroku master
- heroku open 
+```
+$ heroku create myapp
+```
+
+#### Create app with a specific name and within an organization
+
+```
+$ heroku create myapp --org intusurg
+```
+
+#### Deploying from your local branch to heroku and force build
+
+```
+$ git push heroku localbranch:master (mybranch: master)
+```
+
+#### Rename apps
+
+```
+$ heroku heroku apps:oldname newname
+```
+
+#### Add heroku remote to existing project
+
+```
+$ cd myapp
+$ heroku git:remote -a heroku-remote-name
+$ git remote -v
+```
+
+#### Open current heroku app in browser
+
+```
+$ heroku open
+```
+
+
+#### Open application config
+
+```
+$ heroku config
+```
+
+
+#### Show state of the app
+
+```
+$ heroku ps
+```
+
+#### Open application logs
+
+```
+$ heroku logs
+```
+
+#### Push/pull database (proceed with caution)
+
+```
+$ heroku db:pull
+$ heroku db:push
+```
+
+#### Scale web app or add new dynos
+
+```
+$ heroku ps:scale web=1 // 1 is number of dynos the app will use (web=2 for two dynos)
+```
+
+
+#### Clone heroku app to local machine
+
+```
+$ heroku git: clone -a myapp
+```
+
+#### Heroku Addons
+
+```
+$ heroku addons
+```
+
+#### Delete all heroku apps (be very careful)
+
+```
+for app in $(heroku apps); do heroku apps:destroy --app $app --confirm $app; done
+```
+
+#### Setting an application in the org
+
+```
+$ heroku config:set --app myapp --org=intusurg
+```
+
+#### Setting environment for the applications
+
+```
+$ heroku config:set NODE_ENV=production
+```
+
+#### Setting environment for application in the org
+
+```
+$ heroku config:set --app=myapp NODE_ENV=production
+```
+#### Deploy new release and rollback (be careful)
+
+```
+$ heroku releases
+$ heroku releases:rollback v#### (rollback to #### version)
+```
+
+
+## Postgres Commands
+
+#### Postgres info
+
+```
+$ heroku pg:info
+```
+
+#### Continuously watch heroku
+
+```
+$ watch heroku pg:info
+```
+
+
+#### Establish session with remote database with psql
+
+```
+$ heroku pg:psql mydatabase  // my database is your remote database
+```
