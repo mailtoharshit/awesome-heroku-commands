@@ -97,13 +97,11 @@ $ git remote -v
 $ heroku open
 ```
 
-
 #### Open application config
 
 ```
 $ heroku config
 ```
-
 
 #### Show state of the app
 
@@ -115,6 +113,107 @@ $ heroku ps
 
 ```
 $ heroku logs
+```
+
+#### Tail logs
+
+```
+$ heroku logs --ps web.1 --tail
+```
+
+### Running applications on dynos
+
+#### Know what dynos are running which process types
+
+```
+$ heroku ps
+```
+
+#### Scaling size of dyno
+
+```
+$ heroku ps:resize worker=standard-2x
+```
+
+#### Scale Dynos numbeers
+
+```
+$ heroku ps:scale web=3 queue=2
+```
+ 
+#### Views messages from worker dyno type
+
+```
+$ heroku logs --ps worker
+``
+
+#### Heroku’s HTTP routers distribute incoming requests for your application across your running web dynos.
+#### So scaling an app’s capacity to handle web traffic involves scaling the number of web dynos
+
+```
+$ heroku ps:scale web+5
+```
+
+### Build packs 
+
+#### Setting buildpacks for an existing applications
+```
+$ heroku buildpacks:set heroku/php
+``
+
+#### Setting buildpacks while create an  application
+```
+$ heroku create myapp --buildpack heroku/python
+``
+
+#### You can change or remove a previously set buildpack again later
+```
+$ heroku buildpacks:set heroku/nodejs
+$ heroku buildpacks:remove heroku/nodejs
+``
+
+#### Adding third-party buildpacks
+```
+$ heroku buildpacks:set https://github.com/heroku/heroku-buildpack-erlang
+``
+
+### Config Enviornment Variables
+```
+$ heroku config:set ENCRYPTION_KEY=my_secret_launch_codes
+```
+
+### Releases
+
+#### Audit trail of release deploys
+
+```
+$ heroku releases
+```
+
+#### Rollback and deploy a previous release
+
+```
+$ heroku releases:rollback v102    //v102 is your commmit/tag
+```
+
+### Managing Dynos
+
+#### Typically are cycled at least once per day, or whenever the dyno manager detects a fault in the running application (such as out of memory exceptions) or problems with the underlying hardware that requires the dyno be moved to a new physical location.
+
+```
+$ heroku run bash
+```
+
+### Addons
+
+#### Create addons
+```
+$ heroku addons:create heroku-redis:hobby-dev
+```
+
+#### Create addons
+```
+$ heroku addons:create heroku-redis:hobby-dev
 ```
 
 #### Push/pull database (proceed with caution)
