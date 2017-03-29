@@ -121,7 +121,9 @@ $ heroku logs
 $ heroku logs --ps web.1 --tail
 ```
 
+
 ### Running applications on dynos
+
 
 #### Know what dynos are running which process types
 
@@ -135,7 +137,7 @@ $ heroku ps
 $ heroku ps:resize worker=standard-2x
 ```
 
-#### Scale Dynos numbeers
+#### Scale Dynos numbers
 
 ```
 $ heroku ps:scale web=3 queue=2
@@ -145,9 +147,10 @@ $ heroku ps:scale web=3 queue=2
 
 ```
 $ heroku logs --ps worker
-``
+```
 
-#### Heroku’s HTTP routers distribute incoming requests for your application across your running web dynos.
+
+#### Heroku’s HTTP routers distribute incoming requests for your application across your running web dynos
 #### So scaling an app’s capacity to handle web traffic involves scaling the number of web dynos
 
 ```
@@ -159,23 +162,23 @@ $ heroku ps:scale web+5
 #### Setting buildpacks for an existing applications
 ```
 $ heroku buildpacks:set heroku/php
-``
+```
 
 #### Setting buildpacks while create an  application
 ```
 $ heroku create myapp --buildpack heroku/python
-``
+```
 
 #### You can change or remove a previously set buildpack again later
 ```
 $ heroku buildpacks:set heroku/nodejs
 $ heroku buildpacks:remove heroku/nodejs
-``
+```
 
 #### Adding third-party buildpacks
 ```
 $ heroku buildpacks:set https://github.com/heroku/heroku-buildpack-erlang
-``
+```
 
 ### Config Enviornment Variables
 ```
