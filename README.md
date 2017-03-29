@@ -150,8 +150,8 @@ $ heroku logs --ps worker
 ```
 
 
-#### Heroku’s HTTP routers distribute incoming requests for your application across your running web dynos
-#### So scaling an app’s capacity to handle web traffic involves scaling the number of web dynos
+##### Heroku’s HTTP routers distribute incoming requests for your application across your running web dynos
+##### So scaling an app’s capacity to handle web traffic involves scaling the number of web dynos
 
 ```
 $ heroku ps:scale web+5
@@ -180,7 +180,9 @@ $ heroku buildpacks:remove heroku/nodejs
 $ heroku buildpacks:set https://github.com/heroku/heroku-buildpack-erlang
 ```
 
-### Config Enviornment Variables
+### Configuration
+
+#### Set enviornment variables
 ```
 $ heroku config:set ENCRYPTION_KEY=my_secret_launch_codes
 ```
