@@ -202,7 +202,7 @@ $ heroku releases:rollback v102    //v102 is your commmit/tag
 
 ### Managing Dynos
 
-#### Typically are cycled at least once per day, or whenever the dyno manager detects a fault in the running application (such as out of memory exceptions) or problems with the underlying hardware that requires the dyno be moved to a new physical location.
+###### Typically are cycled at least once per day, or whenever the dyno manager detects a fault in the running application (such as out of memory exceptions) or problems with the underlying hardware that requires the dyno be moved to a new physical location.
 
 ```
 $ heroku run bash
